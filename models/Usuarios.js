@@ -7,7 +7,7 @@
 // Usaremos los esquemas
 var Schema = mongoose.Schema;
 
-// Creamos el objeto del esquema y tendrá dos campos de tipo String
+// Creamos el objeto del esquema 
 var UsuariosSchema = Schema({
   rol: String,
   tipo_document: String,

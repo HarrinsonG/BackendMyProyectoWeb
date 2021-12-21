@@ -6,6 +6,8 @@ function RoutesExamenes(app) {
   app.post("/listaExamenes", examenes.ListaExamenes);
   app.post("/traerExamen", examenes.TraerExamen);
   app.post("/desactivarExamen", examenes.DesactivarExamen);
+
+  
 }
 
 module.exports = RoutesExamenes;

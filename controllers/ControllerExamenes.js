@@ -33,8 +33,10 @@ async function EditarExamen(req, res) {
 }
 
 async function ListaExamenes(req, res) {
-    console.log(req.body)
-    const especialidad = {especialidad:req.body.especialidad} || {}
+  console.log(req.body);
+  const especialidad = req.body.especialidad
+    ? { especialidad: req.body.especialidad }
+    : {};
   const buscarExamenes = await examenes.find(especialidad);
 
   return res.json(buscarExamenes);
@@ -43,7 +45,11 @@ async function ListaExamenes(req, res) {
 async function TraerExamen(req, res) {
   const buscarExamen = await examenes.findById(req.body.id).lean();
   const listarEspecialidades = await Especialidad.find().lean();
-  buscarExamen.especialidades = listarEspecialidades
+  if (buscarExamen) {
+    buscarExamen.especialidades = listarEspecialidades;
+  } else {
+    return res.json({});
+  }
 
   return res.json(buscarExamen);
 }
@@ -62,10 +68,13 @@ async function DesactivarExamen(req, res) {
   }
 }
 
+
+
 module.exports = {
   CrearExamen,
   EditarExamen,
   ListaExamenes,
   TraerExamen,
   DesactivarExamen,
+  
 };
